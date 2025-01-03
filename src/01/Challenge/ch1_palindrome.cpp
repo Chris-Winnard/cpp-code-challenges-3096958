@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <string>
 
 // is_palindrome()
 // Summary: This function receives a string and returns true if the string is a palindrome, false otherwise.
@@ -13,10 +14,25 @@
 //           str: The string to analyze.
 // Returns: A boolean value. True for palindromes, false otherwise.
 bool is_palindrome(std::string str){
-
     // Write your code here
 
-    return false;
+   transform(str.begin(), str.end(), str.begin(),
+              ::tolower);
+
+    int stringLength = str.length();
+    int maxStep = stringLength/2;
+
+    bool palindromeSoFar = true;
+    
+    for (int i = 0; i <= maxStep; i++) {
+        char str1 = str[i];
+        char str2 = str[stringLength-i-1];
+        if (str1 != str2) {
+            palindromeSoFar = false;
+        }
+    }
+
+    return palindromeSoFar;
 }
 
 // Main function
